@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego de Autoconocimiento con Animales</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f9;
+            color: #333;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #4CAF50;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #resultado {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #e8f7ea;
+            border: 1px solid #c5e1c5;
+            border-radius: 5px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Descubre tu Animal Interior 🐾</h1>
+    <p>Responde las siguientes preguntas para descubrir qué animal te representa:</p>
+
+    <!-- Pregunta 1 -->
+    <p><strong>1. ¿Cómo te sientes en situaciones sociales?</strong></p>
+    <label><input type="radio" name="q1" value="1"> Me encanta ser el centro de atención.</label><br>
+    <label><input type="radio" name="q1" value="2"> Prefiero observar desde lejos.</label><br>
+    <label><input type="radio" name="q1" value="3"> Me adapto fácilmente al grupo.</label><br>
+
+    <!-- Pregunta 2 -->
+    <p><strong>2. ¿Cómo tomas decisiones importantes?</strong></p>
+    <label><input type="radio" name="q2" value="1"> Confiado y rápido.</label><br>
+    <label><input type="radio" name="q2" value="2"> Analizando cada detalle.</label><br>
+    <label><input type="radio" name="q2" value="3"> Escuchando a otros.</label><br>
+
+    <!-- Pregunta 3 -->
+    <p><strong>3. ¿Qué prefieres hacer en tu tiempo libre?</strong></p>
+    <label><input type="radio" name="q3" value="1"> Actividades físicas o desafiantes.</label><br>
+    <label><input type="radio" name="q3" value="2"> Leer, investigar o reflexionar.</label><br>
+    <label><input type="radio" name="q3" value="3"> Salir con amigos o ayudar a otros.</label><br>
+
+    <!-- Botón para ver el resultado -->
+    <button id="verResultado">Descubre tu Animal</button>
+
+    <!-- Espacio para mostrar el resultado -->
+    <div id="resultado"></div>
+
+    <script>
+        document.getElementById("verResultado").addEventListener("click", function() {
+            // Obtener las respuestas del usuario
+            const q1 = document.querySelector('input[name="q1"]:checked')?.value || 0;
+            const q2 = document.querySelector('input[name="q2"]:checked')?.value || 0;
+            const q3 = document.querySelector('input[name="q3"]:checked')?.value || 0;
+
+            // Calcular el puntaje total
+            const puntaje = parseInt(q1) + parseInt(q2) + parseInt(q3);
+
+            // Determinar el animal basado en el puntaje
+            let animal = "";
+            let descripcion = "";
+
+            if (puntaje >= 8) {
+                animal = "León";
+                descripcion = `
+                    <strong>Animal Representativo: León 🦁</strong><br>
+                    Eres fuerte, decidido y lideras naturalmente.<br>
+                    <em>Pautas para mejorar:</em> Aprende a escuchar más a los demás y a ser flexible en situaciones imprevistas.
+                `;
+            } else if (puntaje >= 5) {
+                animal = "Águila";
+                descripcion = `
+                    <strong>Animal Representativo: Águila 🦅</strong><br>
+                    Eres analítico, observador y estratégico.<br>
+                    <em>Pautas para mejorar:</em> Intenta tomar decisiones más rápidas y no obsesionarte con los detalles.
+                `;
+            } else {
+                animal = "Delfín";
+                descripcion = `
+                    <strong>Animal Representativo: Delfín 🐬</strong><br>
+                    Eres empático, sociable y adaptable.<br>
+                    <em>Pautas para mejorar:</em> Trabaja en tu confianza para tomar decisiones por ti mismo.
+                `;
+            }
+
+            // Mostrar el resultado
+            const resultadoDiv = document.getElementById("resultado");
+            resultadoDiv.innerHTML = descripcion;
+            resultadoDiv.style.display = "block";
+        });
+    </script>
+</body>
+</html>
